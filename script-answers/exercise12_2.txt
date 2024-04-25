@@ -1,0 +1,15 @@
+$ winpty docker container run -it ubuntu
+
+root@fccc667a4aa7:/# mkdir /usr/src/app
+
+root@fccc667a4aa7:/# cd /usr/src/app
+
+root@fccc667a4aa7:/usr/src/app# touch index.js
+
+root@fccc667a4aa7:/usr/src/app# ls
+
+index.js
+
+root@fccc667a4aa7:/usr/src/app# exit
+
+exit
