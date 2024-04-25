@@ -1,0 +1,7 @@
+$ winpty docker start -i blissful_feistel
+
+root@fccc667a4aa7:/# nano /usr/src/app/index.js
+
+root@fccc667a4aa7:/# exit
+
+exit
