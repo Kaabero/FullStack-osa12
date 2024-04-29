@@ -1,0 +1,87 @@
+$ winpty docker compose -f docker-compose.dev.yml up
+
+--
+
+$ winpty docker exec -it 174de6a40a6e mongosh -u root -p example
+Current Mongosh Log ID: 662f532baab297841b2202d7
+Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.5
+Using MongoDB:          7.0.8
+Using Mongosh:          2.2.5
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-04-29T07:36:57.131+00:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never' in this binary version
+   2024-04-29T07:36:57.132+00:00: vm.max_map_count is too low
+------
+
+test> show dbs
+admin         100.00 KiB
+config        108.00 KiB
+local          72.00 KiB
+the_database   72.00 KiB
+todos          40.00 KiB
+test> use the_database
+switched to db the_database
+the_database> show collections
+todos
+the_database> db.todos.find({})
+[
+  {
+    _id: ObjectId('662f4df41fa0283a082202d8'),
+    text: 'Write code',
+    done: true
+  },
+  {
+    _id: ObjectId('662f4df41fa0283a082202d9'),
+    text: 'Learn about containers',
+    done: false
+  }
+]
+
+the_database> db.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done": false })
+{
+  acknowledged: true,
+  insertedId: ObjectId('662f51fc43fa1f8b2e2202da')
+}
+
+the_database> db.todos.find({})
+[
+  {
+    _id: ObjectId('662f4df41fa0283a082202d8'),
+    text: 'Write code',
+    done: true
+  },
+  {
+    _id: ObjectId('662f4df41fa0283a082202d9'),
+    text: 'Learn about containers',
+    done: false
+  },
+  {
+    _id: ObjectId('662f51fc43fa1f8b2e2202da'),
+    text: 'Increase the number of tools in my toolbelt',
+    done: false
+  }
+]
+the_database> exit
+
+
+$ npm run dev
+
+> todo-express-backend@0.0.0 dev
+> nodemon ./bin/www
+
+[nodemon] 2.0.12
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `node ./bin/www`
+mongo mongodb://the_username:the_password@localhost:3456/the_database
+GET /todos/662b85050dab4020ce2202d8 404 17.191 ms - 9
+GET /todos/ 200 20.332 ms - 249
+
+$
+
+
+
