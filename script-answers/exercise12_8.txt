@@ -1,3 +1,4 @@
+~/Documents/Opiskelu/FullStackOpen/part12-containers-applications/todo-app/todo-backend (main)
 $ winpty docker compose -f docker-compose.dev.yml up
 
 --
