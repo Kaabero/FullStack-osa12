@@ -5,6 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
+    // Enable file system polling to detect changes
+    // This can help in some environments where file change events are not properly detected
     watch: {
       usePolling: true
     }
@@ -13,5 +15,8 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true
   }
-  
 })
+
+
+
+
