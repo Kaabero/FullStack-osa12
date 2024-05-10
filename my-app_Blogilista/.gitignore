@@ -1,0 +1,8 @@
+build/
+dist/
+.DS_Store
+node_modules
+.env
+mongo_data
+redis_data
+.github
